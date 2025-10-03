@@ -79,7 +79,7 @@ const Sidebar = () => {
                     <div className="flex justify-between items-center px-4 py-3">
                         <NavLink to="/" className="main-logo flex items-center shrink-0">
                             <img className="w-8 ml-[5px] flex-none" src="/assets/images/logo.svg" alt="logo" />
-                            <span className="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('VRISTO')}</span>
+                            <span className="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('Admin Pinnacle')}</span>
                         </NavLink>
 
                         <button
@@ -110,14 +110,14 @@ const Sidebar = () => {
 
                             <li className="nav-item">
                                 <ul>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <NavLink to="/apps/calendar" className="group">
                                             <div className="flex items-center">
                                                 <IconMenuCalendar className="group-hover:!text-primary shrink-0" />
                                                 <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Payments')}</span>
                                             </div>
                                         </NavLink>
-                                    </li>
+                                    </li> */}
 
                                     <li className="menu nav-item">
                                         <button type="button" className={`${currentMenu === 'Users' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('Users')}>
@@ -196,7 +196,7 @@ const Sidebar = () => {
                                     </ul>
                                 </AnimateHeight>
                             </li>
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'component' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('component')}>
                                     <div className="flex items-center">
                                         <IconMenuComponents className="group-hover:!text-primary shrink-0" />
@@ -254,9 +254,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'element' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('element')}>
                                     <div className="flex items-center">
                                         <IconMenuElements className="group-hover:!text-primary shrink-0" />
@@ -326,59 +326,59 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <NavLink to="/charts" className="group">
                                     <div className="flex items-center">
                                         <IconMenuCharts className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('charts')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <NavLink to="/widgets" className="group">
                                     <div className="flex items-center">
                                         <IconMenuWidgets className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('widgets')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <NavLink to="/font-icons" className="group">
                                     <div className="flex items-center">
                                         <IconMenuFontIcons className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('font_icons')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <NavLink to="/dragndrop" className="group">
                                     <div className="flex items-center">
                                         <IconMenuDragAndDrop className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('drag_and_drop')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
 
-                            <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+                            {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('tables_and_forms')}</span>
-                            </h2>
+                            </h2> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <NavLink to="/tables" className="group">
                                     <div className="flex items-center">
                                         <IconMenuTables className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('tables')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'datalabel' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('datalabel')}>
                                     <div className="flex items-center">
                                         <IconMenuDatatables className="group-hover:!text-primary shrink-0" />
@@ -427,9 +427,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'forms' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('forms')}>
                                     <div className="flex items-center">
                                         <IconMenuForms className="group-hover:!text-primary shrink-0" />
@@ -490,14 +490,14 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+                            {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('user_and_pages')}</span>
-                            </h2>
+                            </h2> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'users' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('users')}>
                                     <div className="flex items-center">
                                         <IconMenuUsers className="group-hover:!text-primary shrink-0" />
@@ -519,9 +519,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'page' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('page')}>
                                     <div className="flex items-center">
                                         <IconMenuPages className="group-hover:!text-primary shrink-0" />
@@ -602,9 +602,9 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <button type="button" className={`${currentMenu === 'auth' ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu('auth')}>
                                     <div className="flex items-center">
                                         <IconMenuAuthentication className="group-hover:!text-primary shrink-0" />
@@ -660,21 +660,21 @@ const Sidebar = () => {
                                         </li>
                                     </ul>
                                 </AnimateHeight>
-                            </li>
+                            </li> */}
 
-                            <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+                            {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('supports')}</span>
-                            </h2>
+                            </h2> */}
 
-                            <li className="menu nav-item">
+                            {/* <li className="menu nav-item">
                                 <NavLink to="https://vristo.sbthemes.com" target="_blank" className="nav-link group">
                                     <div className="flex items-center">
                                         <IconMenuDocumentation className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('documentation')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
+                            </li> */}
                         </ul>
                     </PerfectScrollbar>
                 </div>

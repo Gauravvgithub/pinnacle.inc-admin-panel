@@ -108,7 +108,7 @@ const routes = [
     // dashboard
     {
         path: '/',
-        element: <Index />,
+        element: <Blogs />,
     },
     // {
     //     path: '/index',
