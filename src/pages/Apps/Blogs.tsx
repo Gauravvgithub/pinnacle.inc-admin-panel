@@ -123,7 +123,7 @@ const Blogs = () => {
                                 accessor: 'blogImage',
                                 render: ({ blogImage }) => (
                                     <div>
-                                        <img src={`http://localhost:9876${blogImage}`} className="h-auto w-10" alt="" />
+                                        <img src={`${import.meta.env.VITE_API_BASE_URL}${blogImage}`} className="h-auto w-10" alt="" />
                                     </div>
                                 ),
                             },
@@ -131,7 +131,7 @@ const Blogs = () => {
                                 accessor: 'blogBanner',
                                 render: ({ blogBanner }) => (
                                     <div>
-                                        <img src={`http://localhost:9876${blogBanner}`} className="h-auto w-10" alt="" />
+                                        <img src={`${import.meta.env.VITE_API_BASE_URL}${blogBanner}`} className="h-auto w-10" alt="" />
                                     </div>
                                 ),
                             },
