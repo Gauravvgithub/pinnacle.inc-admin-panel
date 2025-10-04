@@ -2,7 +2,7 @@ import axios from 'axios';
 const instance = axios.create({
   
   
-  baseURL: "http://localhost:9876/api",
+  baseURL: "https://pinnacle-inc-backend.vercel.app/api",
   withCredentials: true,
 });
 
