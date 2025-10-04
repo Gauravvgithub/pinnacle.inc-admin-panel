@@ -108,7 +108,7 @@ const Blogs = () => {
         <div className="panel px-0 border-white-light dark:border-[#1b2e4b]">
             <div className="invoice-table">
                 <div className="datatables pagination-padding">
-                    <h5 className="font-bold text-lg dark:text-white-light mb-5 ms-5">All Users</h5>
+                    <h5 className="font-bold text-lg dark:text-white-light mb-5 ms-5">All Blogs</h5>
                     <DataTable
                         striped
                         className="whitespace-nowrap table-striped table-hover table-bordered table-compact"
