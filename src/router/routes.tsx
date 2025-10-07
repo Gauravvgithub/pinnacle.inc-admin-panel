@@ -15,7 +15,7 @@ const AddBlog = lazy(() => import('../pages/Apps/AddBlog'));
 // const Scrumboard = lazy(() => import('../pages/Apps/Scrumboard'));
 // const Calendar = lazy(() => import('../pages/Apps/Calendar'));
 // const List = lazy(() => import('../pages/Apps/Invoice/List'));
-// const RegisterBoxed = lazy(() => import('../pages/Authentication/RegisterBoxed'));
+const RegisterBoxed = lazy(() => import('../pages/Authentication/RegisterBoxed'));
 // const Preview = lazy(() => import('../pages/Apps/Invoice/Preview'));
 // const Edit = lazy(() => import('../pages/Apps/Invoice/Edit'));
 // const Tabs = lazy(() => import('../pages/Components/Tabs'));
@@ -77,7 +77,7 @@ const ERROR404 = lazy(() => import('../pages/Pages/Error404'));
 const ERROR500 = lazy(() => import('../pages/Pages/Error500'));
 const ERROR503 = lazy(() => import('../pages/Pages/Error503'));
 // const Maintenence = lazy(() => import('../pages/Pages/Maintenence'));
-// const LoginBoxed = lazy(() => import('../pages/Authentication/LoginBoxed'));
+const LoginBoxed = lazy(() => import('../pages/Authentication/LoginBoxed'));
 // const RegisterBoxed = lazy(() => import('../pages/Authentication/RegisterBoxed'));
 // const UnlockBoxed = lazy(() => import('../pages/Authentication/UnlockBox'));
 // const RecoverIdBoxed = lazy(() => import('../pages/Authentication/RecoverIdBox'));
@@ -439,16 +439,16 @@ const routes = [
     //     layout: 'blank',
     // },
     // //Authentication
-    // {
-    //     path: '/auth/login',
-    //     element: <LoginBoxed />,
-    //     layout: 'blank',
-    // },
-    // {
-    //     path: '/auth/boxed-signup',
-    //     element: <RegisterBoxed />,
-    //     layout: 'blank',
-    // },
+    {
+        path: '/auth/login',
+        element: <LoginBoxed />,
+        layout: 'blank',
+    },
+    {
+        path: '/auth/boxed-signup',
+        element: <RegisterBoxed />,
+        layout: 'blank',
+    },
     // {
     //     path: '/auth/boxed-lockscreen',
     //     element: <UnlockBoxed />,
