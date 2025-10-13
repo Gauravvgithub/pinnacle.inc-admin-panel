@@ -37,8 +37,8 @@ const Blogs = () => {
         blogImage: '',
         blogBanner: '',
         blogSeoDetails: {
-        _id: '',
-    }
+            _id: '',
+        }
     });
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [selectedBanner, setSelectedBanner] = useState<File | null>(null);
@@ -64,7 +64,7 @@ const Blogs = () => {
         setRecords(initialRecords.slice(from, to));
     }, [page, pageSize, initialRecords]);
 
-    const deleteRow = async (id:any) => {
+    const deleteRow = async (id: any) => {
         if (window.confirm('Are you sure want to delete this user?')) {
             await dispatch(deleteBlog(id))
             await dispatch(fetchAllBlogs())
@@ -79,28 +79,53 @@ const Blogs = () => {
         }
     };
 
+    // const handleUpdate = async () => {
+    //     try {
+    //         const fd = new FormData();
+    //         fd.append('_id', selectedUser._id);
+    //         fd.append('blogTitle', selectedUser.blogTitle);
+    //         fd.append('blogDescription', selectedUser.blogDescription);
+    //         if (selectedImage) {
+    //             fd.append('blogImage', selectedImage);
+    //         } else {
+    //             fd.append('blogImage', selectedUser.blogImage);
+    //         }
+    //         if (selectedBanner) {
+    //             fd.append('blogBanner', selectedBanner);
+    //         } else {
+    //             fd.append('blogBanner', selectedUser.blogBanner);
+    //         }
+    //         // You may need to update the dispatch to use fd if your update action expects FormData
+    //         await dispatch(updateBlog(fd)).unwrap();
+    //         await dispatch(fetchAllBlogs());
+    //         setModal(false);
+    //     } catch (error) {
+    //         console.error('Update failed:', error);
+    //     }
+    // };
+
     const handleUpdate = async () => {
         try {
             const fd = new FormData();
             fd.append('_id', selectedUser._id);
             fd.append('blogTitle', selectedUser.blogTitle);
             fd.append('blogDescription', selectedUser.blogDescription);
+            fd.append('slug', selectedUser.slugName); // ✅ Add this line
+
             if (selectedImage) {
                 fd.append('blogImage', selectedImage);
-            } else {
-                fd.append('blogImage', selectedUser.blogImage);
             }
+
             if (selectedBanner) {
                 fd.append('blogBanner', selectedBanner);
-            } else {
-                fd.append('blogBanner', selectedUser.blogBanner);
             }
-            // You may need to update the dispatch to use fd if your update action expects FormData
+
             await dispatch(updateBlog(fd)).unwrap();
             await dispatch(fetchAllBlogs());
             setModal(false);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Update failed:', error);
+            alert(error?.message || "Update failed"); // Optional: better error display
         }
     };
 
@@ -152,7 +177,7 @@ const Blogs = () => {
                                         <button
                                             className="flex hover:text-info"
                                             onClick={() => {
-                                                setSelectedUser(allBlogs.find((u:any) => u._id === _id) || selectedUser);
+                                                setSelectedUser(allBlogs.find((u: any) => u._id === _id) || selectedUser);
                                                 setModal(true);
                                             }}
                                         >
@@ -219,6 +244,17 @@ const Blogs = () => {
                                                 {/* Only use ReactQuill for blogDescription to preserve formatting */}
                                                 <CustomBlogEditor value={selectedUser?.blogDescription} onChange={(value) => setSelectedUser({ ...selectedUser, blogDescription: value })} />
                                             </div>
+                                            <label htmlFor="slug">Custom Slug (optional)</label>
+                                            <div className="relative mb-4">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Enter custom slug"
+                                                    className="form-input ltr:pl-10 rtl:pr-10"
+                                                    value={selectedUser.slugName}
+                                                    onChange={(e) => setSelectedUser({ ...selectedUser, slugName: e.target.value })}
+                                                />
+                                            </div>
+
                                             <label htmlFor="Name">Blog Image</label>
                                             <div className="relative mb-4">
                                                 <IconCamera className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 w-5 h-5 dark:text-white-dark" />
