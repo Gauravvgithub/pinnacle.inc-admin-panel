@@ -137,6 +137,7 @@ const AddBlog = () => {
                             {/* Blog Image */}
                             <div>
                                 <label htmlFor="blogImage">Blog Image</label>
+                                <label htmlFor="blogImage">(800x600)<sup style={{color:"red"}}>*</sup></label>
                                 <div className="relative text-white-dark">
                                     <input
                                         id="blogImage"
@@ -154,6 +155,7 @@ const AddBlog = () => {
                             {/* Blog Banner */}
                             <div>
                                 <label htmlFor="blogBanner">Blog Banner</label>
+                                <label htmlFor="blogImage">(1200x628) <sup style={{color:"red"}}>*</sup> </label>
                                 <div className="relative text-white-dark">
                                     <input
                                         id="blogBanner"
