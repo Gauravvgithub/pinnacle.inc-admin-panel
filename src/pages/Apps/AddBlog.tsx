@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setPageTitle, toggleRTL } from '../../store/themeConfigSlice';
+import { useDispatch } from 'react-redux';
+import { setPageTitle } from '../../store/themeConfigSlice';
 import { useEffect, useState } from 'react';
 import IconUser from '../../components/Icon/IconUser';
 import IconCamera from '../../components/Icon/IconCamera';
@@ -13,6 +13,7 @@ interface Blog {
     blogDescription: string;
     blogImage: string;
     blogBanner: string;
+    slug?: string; // Optional slug
 }
 
 const AddBlog = () => {
@@ -22,13 +23,17 @@ const AddBlog = () => {
         blogDescription: '',
         blogImage: '',
         blogBanner: '',
+        slug: '',
     });
+
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [selectedBanner, setSelectedBanner] = useState<File | null>(null);
-    useEffect(() => {
-        dispatch(setPageTitle('Register Boxed'));
-    });
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(setPageTitle('Create Blog'));
+    }, [dispatch]);
 
     const handleImageUpload = (type: 'blogImage' | 'blogBanner', value: File | null) => {
         if (type === 'blogImage') {
@@ -40,26 +45,34 @@ const AddBlog = () => {
 
     const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('object');
+
         try {
             const fd = new FormData();
             fd.append('blogTitle', form.blogTitle);
             fd.append('blogDescription', form.blogDescription);
-             if (selectedImage) {
+
+            // Optional: append custom slug if provided
+            if (form.slug?.trim()) {
+                fd.append('slug', form.slug.trim());
+            }
+
+            if (selectedImage) {
                 fd.append('blogImage', selectedImage);
             } else {
                 fd.append('blogImage', form.blogImage);
             }
+
             if (selectedBanner) {
                 fd.append('blogBanner', selectedBanner);
             } else {
                 fd.append('blogBanner', form.blogBanner);
             }
+
             await dispatch(create(fd));
             await dispatch(fetchAllBlogs());
             navigate('/apps/Manage-blog');
         } catch (error) {
-            console.error('create failed:', error);
+            console.error('Create failed:', error);
         }
     };
 
@@ -69,14 +82,17 @@ const AddBlog = () => {
                 <div className="relative flex flex-col justify-center rounded-md bg-white/60 backdrop-blur-lg dark:bg-black/50 px-6 lg:min-h-[758px] py-20">
                     <div className="mx-auto w-full max-w-[440px]">
                         <div className="mb-10">
-                            <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Create Blog</h1>
+                            <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">
+                                Create Blog
+                            </h1>
                         </div>
                         <form className="space-y-5 dark:text-white" onSubmit={submitForm}>
+                            {/* Blog Title */}
                             <div>
-                                <label htmlFor="Name">Blog Title</label>
+                                <label htmlFor="title">Blog Title</label>
                                 <div className="relative text-white-dark">
                                     <input
-                                        id="titile"
+                                        id="title"
                                         type="text"
                                         placeholder="Enter Blog Title"
                                         className="form-input ps-10 placeholder:text-white-dark"
@@ -88,19 +104,43 @@ const AddBlog = () => {
                                     </span>
                                 </div>
                             </div>
+
+                            {/* Custom Slug (Optional) */}
                             <div>
-                                <label htmlFor="Email">Blog Description</label>
+                                <label htmlFor="slug">Custom Slug (Optional)</label>
                                 <div className="relative text-white-dark">
-                                    <CustomBlogEditor value={form.blogDescription} onChange={(value) => setForm({ ...form, blogDescription: value })} />
+                                    <input
+                                        id="slug"
+                                        type="text"
+                                        placeholder="Enter custom slug (optional)"
+                                        className="form-input ps-10 placeholder:text-white-dark"
+                                        onChange={(e) => setForm({ ...form, slug: e.target.value })}
+                                        value={form.slug}
+                                    />
+                                    <span className="absolute start-4 top-1/2 -translate-y-1/2">
+                                        <IconUser fill={true} />
+                                    </span>
                                 </div>
                             </div>
+
+                            {/* Blog Description */}
                             <div>
-                                <label htmlFor="image">Blog Image</label>
+                                <label htmlFor="description">Blog Description</label>
+                                <div className="relative text-white-dark">
+                                    <CustomBlogEditor
+                                        value={form.blogDescription}
+                                        onChange={(value) => setForm({ ...form, blogDescription: value })}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Blog Image */}
+                            <div>
+                                <label htmlFor="blogImage">Blog Image</label>
                                 <div className="relative text-white-dark">
                                     <input
                                         id="blogImage"
                                         type="file"
-                                        placeholder="Enter blogImage"
                                         className="form-input ps-10 placeholder:text-white-dark"
                                         onChange={(e) => handleImageUpload('blogImage', e.target.files?.[0] || null)}
                                         required
@@ -110,13 +150,14 @@ const AddBlog = () => {
                                     </span>
                                 </div>
                             </div>
+
+                            {/* Blog Banner */}
                             <div>
-                                <label htmlFor="banner">Blog Banner</label>
+                                <label htmlFor="blogBanner">Blog Banner</label>
                                 <div className="relative text-white-dark">
                                     <input
-                                        id="profile"
+                                        id="blogBanner"
                                         type="file"
-                                        placeholder="Enter profile"
                                         className="form-input ps-10 placeholder:text-white-dark"
                                         onChange={(e) => handleImageUpload('blogBanner', e.target.files?.[0] || null)}
                                         required
@@ -126,7 +167,12 @@ const AddBlog = () => {
                                     </span>
                                 </div>
                             </div>
-                            <button type="submit" className="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
+
+                            {/* Submit Button */}
+                            <button
+                                type="submit"
+                                className="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                            >
                                 Create
                             </button>
                         </form>
