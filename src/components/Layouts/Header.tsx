@@ -26,7 +26,7 @@ import { logout } from '../../store/authSlice';
 const Header = () => {
     const location = useLocation();
     const navigate = useNavigate()
-        const { user } = useSelector((state: IRootState) => state.auth);
+    const { user } = useSelector((state: IRootState) => state.auth);
     useEffect(() => {
         const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
         if (selector) {
@@ -53,14 +53,37 @@ const Header = () => {
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const dispatch = useDispatch<AppDispatch>();
 
-    const handleLogout = async () =>{
+    // const handleLogout = async () =>{
+    //     try {
+    //         await dispatch(logout()).unwrap()
+    //         navigate('/auth/login')
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
+    const handleLogout = async () => {
         try {
-            await dispatch(logout()).unwrap()
-            navigate('/auth/login')
+            // Call backend logout endpoint to clear the cookie
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/logout`, {
+                method: "POST",
+                credentials: "include", // send cookies with request
+            });
+
+            if (!response.ok) {
+                throw new Error("Logout request failed");
+            }
+
+            // Clear Redux/auth state
+            await dispatch(logout()).unwrap();
+
+            // Redirect to login page
+            navigate("/auth/login");
         } catch (error) {
-            console.log(error)
+            console.error("Logout failed:", error);
         }
-    }
+    };
+
 
 
 
@@ -73,7 +96,7 @@ const Header = () => {
                     <div className="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
                         <Link to="/" className="main-logo flex items-center shrink-0">
                             <img className="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="/assets/images/logo.svg" alt="logo" />
-                            <span className="text-2xl ltr:ml-1.5 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">VRISTO</span>
+                            <span className="text-2xl ltr:ml-1.5 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">pinnacle</span>
                         </Link>
                         <button
                             type="button"
@@ -96,10 +119,9 @@ const Header = () => {
                         <div>
                             {themeConfig.theme === 'light' ? (
                                 <button
-                                    className={`${
-                                        themeConfig.theme === 'light' &&
+                                    className={`${themeConfig.theme === 'light' &&
                                         'flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60'
-                                    }`}
+                                        }`}
                                     onClick={() => {
                                         dispatch(toggleTheme('dark'));
                                     }}
@@ -111,10 +133,9 @@ const Header = () => {
                             )}
                             {themeConfig.theme === 'dark' && (
                                 <button
-                                    className={`${
-                                        themeConfig.theme === 'dark' &&
+                                    className={`${themeConfig.theme === 'dark' &&
                                         'flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60'
-                                    }`}
+                                        }`}
                                     onClick={() => {
                                         dispatch(toggleTheme('system'));
                                     }}
@@ -124,10 +145,9 @@ const Header = () => {
                             )}
                             {themeConfig.theme === 'system' && (
                                 <button
-                                    className={`${
-                                        themeConfig.theme === 'system' &&
+                                    className={`${themeConfig.theme === 'system' &&
                                         'flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60'
-                                    }`}
+                                        }`}
                                     onClick={() => {
                                         dispatch(toggleTheme('light'));
                                     }}
@@ -692,7 +712,7 @@ const Header = () => {
                                 <NavLink to="/widgets">{t('widgets')}</NavLink>
                             </li>
                             <li>
-                                <NavLink to="https://vristo.sbthemes.com" target="_blank">
+                                <NavLink to="https://pinnacle.sbthemes.com" target="_blank">
                                     {t('documentation')}
                                 </NavLink>
                             </li>
