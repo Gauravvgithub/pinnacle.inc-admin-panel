@@ -14,7 +14,7 @@ const AddBlog = lazy(() => import('../pages/Apps/AddBlog'));
 // const Chat = lazy(() => import('../pages/Apps/Chat'));
 // const Scrumboard = lazy(() => import('../pages/Apps/Scrumboard'));
 // const Calendar = lazy(() => import('../pages/Apps/Calendar'));
-// const List = lazy(() => import('../pages/Apps/Invoice/List'));
+const List = lazy(() => import('../pages/Apps/Invoice/List'));
 const RegisterBoxed = lazy(() => import('../pages/Authentication/RegisterBoxed'));
 // const Preview = lazy(() => import('../pages/Apps/Invoice/Preview'));
 // const Edit = lazy(() => import('../pages/Apps/Invoice/Edit'));
@@ -145,14 +145,14 @@ const routes = [
     //     path: '/apps/mailbox',
     //     element: <Mailbox />,
     // },
-    // {
-    //     path: '/apps/Manage-user',
-    //     element: <List />,
-    // },
-    // {
-    //     path: '/apps/add-user',
-    //     element: <RegisterBoxed />,
-    // },
+    {
+        path: '/apps/Manage-user',
+        element: <List />,
+    },
+    {
+        path: '/apps/add-user',
+        element: <RegisterBoxed />,
+    },
     // // Apps page
     // {
     //     path: '/apps/chat',
